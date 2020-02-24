@@ -1,0 +1,39 @@
+.sf-label-value {
+  display: -webkit-box;
+  display: flex;
+  padding: 4px 0 4px 15px;
+  border: 1px solid #ddd;
+}
+
+.sf-label-value-noborder {
+  border: none;
+}
+
+.sf-label-value-alignCenter {
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.sf-label-value > li:first-child {
+  font-weight: 700;
+  color: #404d60;
+  font-size: 16px;
+}
+
+.sf-label-value > li:first-child::after {
+  content: ":";
+  margin: 0 10px 0 2px;
+}
+
+.sf-label-value > li:last-child {
+  -webkit-box-flex: 1;
+  flex: 1;
+  line-height: 1;
+}
+
+.sf-label-value-alignCenterValue > li:last-child {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}

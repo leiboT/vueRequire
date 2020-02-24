@@ -1,0 +1,9 @@
+.sf-theme > li {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  margin-left: 50px;
+  cursor: pointer;
+}

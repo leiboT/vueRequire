@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>个人中心</title>
+    <link rel="stylesheet" href="./lib/buefy/dist/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="./lib/buefy/dist/buefy.css" />
+    <style>
+      table,
+      table tr td {
+        border: 1px solid #ddd;
+      }
+      table tr td {
+        vertical-align: middle;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .avatar {
+        font-size: 0;
+      }
+      .avatar > img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div style="width: 70%; margin: 60px auto 0;">
+        <sf-title-content title="个人信息">
+          <sf-button type="is-info" style="margin-bottom: 18px;" @click="edit"
+            >编辑</sf-button
+          >
+          <table>
+            <tr>
+              <td>
+                <sf-label-value label="头像" :border="false">
+                  <sf-upload accept="image/*" v-model="info.avatar">
+                    <a class="avatar">
+                      <img
+                        src="https://cdn4.buysellads.net/uu/1/3386/1525189943-38523.png"
+                        width="100"
+                        height="100"
+                      />
+                    </a>
+                  </sf-upload>
+                </sf-label-value>
+              </td>
+              <td>
+                <sf-label-value label="用户名" :border="false">
+                  <sf-input v-model="info.username"></sf-input>
+                </sf-label-value>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <sf-label-value label="姓名" :border="false">
+                  <sf-input v-model="info.name"></sf-input>
+                </sf-label-value>
+              </td>
+              <td>
+                <sf-label-value label="手机号" :border="false">
+                  <sf-input type="phone" v-model="info.phone"></sf-input>
+                </sf-label-value>
+              </td>
+              <td>
+                <sf-label-value label="邮箱" :border="false">
+                  <sf-input type="email" v-model="info.email"></sf-input>
+                </sf-label-value>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <sf-label-value label="密码" :border="false">
+                  <sf-input
+                    type="password"
+                    password-reveal
+                    v-model="info.password"
+                  ></sf-input>
+                </sf-label-value>
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+        </sf-title-content>
+        <sf-title-content title="颜色主题">
+          <sf-label-value label="颜色主题选择">
+            <sf-theme v-model="theme"></sf-theme>
+          </sf-label-value>
+        </sf-title-content>
+        <sf-title-content title="提醒设置">
+          <sf-label-value label="桌面通知" :align-center-value="true">
+            <sf-switch
+              @value="notification"
+              @input="notificationToggle"
+            ></sf-switch>
+            <span style="color: #8e9eb5; font-size: 14px; margin-left: 40px;"
+              >提示：开启后有新消息时系统会在桌面右下角弹出提示框</span
+            >
+          </sf-label-value>
+        </sf-title-content>
+      </div>
+    </div>
+    <script src="./lib/require/require.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./personalCenter.js"></script>
+  </body>
+</html>

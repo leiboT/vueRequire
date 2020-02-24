@@ -1,0 +1,19 @@
+.sf-title-content > li:first-child {
+  font-size: 0;
+  padding-left: 15px;
+  background-color: #eef1f5;
+}
+.sf-title-content > li:first-child > span {
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  padding: 0 10px;
+  font-size: 14px;
+  color: #75828e;
+  font-weight: 700;
+  background-color: #fff;
+}
+.sf-title-content > li:last-child {
+  padding: 24px;
+  background-color: #fff;
+}
