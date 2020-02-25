@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>首页</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .list-model > h3 {
+        padding: 10px 0;
+        cursor: move;
+      }
+      .list-group .list-group-item {
+        display: inline-block;
+        padding: 30px 60px;
+        vertical-align: top;
+        text-align: center;
+        cursor: move;
+        margin: 0 20px 20px 0;
+        border-radius: 20px;
+        box-shadow: 0 0 10px #ddd;
+      }
+      .list-group .list-group-item .list-group-item-icon {
+        display: inline-block;
+        vertical-align: middle;
+        width: 60px;
+        height: 60px;
+        border-radius: 20px;
+        background-color: green;
+      }
+      .list-group .list-group-item .list-group-item-title {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 18px;
+        font-weight: 700;
+        color: #000;
+      }
+      .list-group .list-group-item .list-group-item-extra {
+        margin-top: 30px;
+        font-size: 14px;
+        color: #8e9eb5;
+      }
+      .list-group .list-group-item .list-group-item-extra span {
+        font-weight: 700;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <sf-dnd tag="ul" :list="list" group="model" :animation="150">
+        <li v-for="item in list" :key="item.title" class="list-model">
+          <h3>{{ item.title }}</h3>
+          <sf-dnd
+            :animation="150"
+            :list="item.children"
+            class="list-group"
+            group="item"
+            @end="end"
+          >
+            <div
+              v-for="child in item.children"
+              :key="child.title"
+              class="list-group-item"
+            >
+              <span class="list-group-item-icon"></span>
+              <span class="list-group-item-title">{{ child.title }}</span>
+              <div class="list-group-item-extra">
+                {{child.text}}：<span>{{child.count}}</span>
+              </div>
+            </div>
+          </sf-dnd>
+        </li>
+      </sf-dnd>
+    </div>
+    <script src="./lib/require/require.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./startPage1.js"></script>
+  </body>
+</html>

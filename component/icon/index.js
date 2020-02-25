@@ -1,4 +1,9 @@
-define(["BIcon", "css!./component/icon/index.css"], function(BIcon) {
+define([
+  "BIcon",
+  "css!./component/icon/index.css",
+  "css!./lib/buefy/css/buefy.min.css",
+  "css!./lib/buefy/css/materialdesignicons.min.css"
+], function(BIcon) {
   "use strict";
   return {
     name: "sf-icon",

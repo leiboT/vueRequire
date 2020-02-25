@@ -4,11 +4,202 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>首页</title>
-    <link rel="stylesheet" href="./lib/buefy/dist/buefy.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        background-color: #eef1f5 !important;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #fff;
+        padding: 0 10px;
+      }
+      .right,
+      .left {
+        position: fixed;
+        top: 70px;
+        bottom: 0;
+        width: 200px;
+        padding-bottom: 50px;
+        background-color: #fff;
+        transition: all 0.2s;
+      }
+      .right .right-content,
+      .left .left-content {
+        height: 100%;
+        overflow: auto;
+      }
+      .right .right-content > li,
+      .left .left-content > li {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+      }
+      .right .right-content > li:hover,
+      .left .left-content > li:hover {
+        background-color: #eff6fc;
+      }
+      .left .left-content > li.active {
+        background-color: #eff6fc;
+      }
+      .right .right-footer,
+      .left .left-footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 10px;
+        text-align: right;
+        border-top: 1px solid #ddd;
+      }
+      .center {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: auto;
+        transition: all 0.2s;
+      }
+      .list {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        box-shadow: 0 0 10px 0px #ddd;
+      }
+      .list .list-header {
+        height: 50px;
+        line-height: 50px;
+        border-bottom: 1px solid #ddd;
+        padding: 0 10px;
+      }
+      .list .list-header .list-header-add {
+        cursor: pointer;
+        color: #ddd;
+      }
+      .list .list-header .list-header-close {
+        cursor: pointer;
+        color: #ddd;
+        float: right;
+      }
+      .list .list-content {
+        flex: 1;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
-    <script src="./lib/require/require.js"></script>
+    <div id="app">
+      <div class="header">
+        首页
+        <div>
+          <sf-button v-if="!isEdit" @click="isEdit = true">编辑</sf-button>
+          <span v-else>
+            <sf-button v-if="false" @click="prevStep">上一步</sf-button>
+            <sf-button :disabled="false" @click="save">保存</sf-button>
+            <sf-button @click="isEdit = false">取消</sf-button>
+          </span>
+        </div>
+      </div>
+      <div class="left" :style="{left: isEdit ? 0: '-200px'}">
+        <ul class="left-content">
+          <li
+            v-for="item in modelList"
+            :key="item.name"
+            :class="{active: item.name === selectedModel.name}"
+            @click="selectedModel = item"
+          >
+            {{item.name}}
+          </li>
+        </ul>
+        <div class="left-footer">
+          <sf-button :disabled="!selectedModel.name" @click="modelAdd">
+            添加
+          </sf-button>
+        </div>
+      </div>
+      <div
+        class="center"
+        :style="{left: isEdit ? '200px': 0, right: isEdit ? '200px': 0}"
+      >
+        <grid-layout
+          :layout="layout"
+          :col-num="12"
+          :row-height="30"
+          :is-draggable="isEdit"
+          :is-resizable="isEdit"
+          :vertical-compact="true"
+          :use-css-transforms="true"
+          @layout-updated="layoutUpdatedEvent"
+        >
+          <grid-item
+            v-for="(item, index) in layout"
+            :static="item.static"
+            :x="item.x"
+            :y="item.y"
+            :w="item.w"
+            :h="item.h"
+            :i="item.i"
+            :min-w="4"
+            :min-h="6"
+            :key="item.i"
+          >
+            <div :class='["list", {"list-static": item.static}]'>
+              <div class="list-header">
+                {{item.name}}
+                <span
+                  class="list-header-add"
+                  @click="modelItemAdd(item)"
+                  v-if="isEdit"
+                  >+</span
+                >
+                <span
+                  class="list-header-close"
+                  @click="modelDel(index)"
+                  v-if="isEdit"
+                  >X</span
+                >
+              </div>
+              <ul class="list-content">
+                <li v-for="child in item.children">
+                  {{child.name}} {{child.desc}}：{{child.count}}
+                </li>
+              </ul>
+            </div>
+          </grid-item>
+        </grid-layout>
+      </div>
+      <div class="right" :style="{right: isEdit  ? 0: '-200px'}">
+        <ul class="right-content">
+          <li v-for="item in modelList">
+            {{item.name}}
+          </li>
+        </ul>
+        <div class="right-footer">
+          <sf-button :disabled="!selectedModel.name" @click="modelAdd">
+            添加
+          </sf-button>
+        </div>
+      </div>
+    </div>
+    <script src="./lib/require/require.min.js"></script>
     <script src="./js/main.js"></script>
     <script src="./startPage.js"></script>
   </body>

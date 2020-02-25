@@ -1,4 +1,9 @@
-define(["BButton", "css!./component/button/index.css"], function(BButton) {
+define([
+  "BButton",
+  "css!./component/button/index.css",
+  "css!./lib/buefy/css/buefy.min.css",
+  "css!./lib/buefy/css/materialdesignicons.min.css"
+], function(BButton) {
   "use strict";
   return {
     name: "sf-button",

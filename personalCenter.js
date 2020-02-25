@@ -8,21 +8,19 @@ sf.init({
     "sf-input",
     "sf-theme"
   ],
-  plugin: ["jquery"],
-  data: function() {
-    return {
-      api: {},
-      info: {
-        username: "",
-        name: "",
-        phone: "",
-        email: "",
-        password: "",
-        avatar: []
-      },
-      theme: "blue",
-      notification: false
-    };
+  plugins: ["push"],
+  data: {
+    api: {},
+    info: {
+      username: "",
+      name: "",
+      phone: "",
+      email: "",
+      password: "",
+      avatar: []
+    },
+    theme: "blue",
+    notification: false
   },
   created: function() {
     // debugger;
@@ -33,6 +31,7 @@ sf.init({
     },
     notificationToggle: function(value) {
       this.notification = value;
+      this.$sf.push.create("Hello World!");
     }
   }
 });

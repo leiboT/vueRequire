@@ -3,14 +3,21 @@ requirejs.config({
   baseURL: "/js",
   // 组件模块路径配置
   paths: {
-    jquery: "./lib/jquery/jquery",
     vue: "./lib/vue/vue",
-    css: "./lib/require-css/css",
-    BButton: "./lib/buefy/dist/components/button/index",
-    BInput: "./lib/buefy/dist/components/input/index",
-    BIcon: "./lib/buefy/dist/components/icon/index",
-    BSwitch: "./lib/buefy/dist/components/switch/index",
-    BUpload: "./lib/buefy/dist/components/upload/index",
+    jquery: "./lib/jquery/jquery.min",
+    lodash: "./lib/lodash/lodash.min",
+    push: "./lib/push/push.min",
+    sortablejs: "./lib/sortable/sortable.min",
+    axios: "./lib/axios/axios.min",
+    i18n: "./lib/vue-i18n/vue-i18n.min",
+    css: "./lib/require-css/css.min",
+    BButton: "./lib/buefy/components/button/index.min",
+    BInput: "./lib/buefy/components/input/index.min",
+    BIcon: "./lib/buefy/components/icon/index.min",
+    BSwitch: "./lib/buefy/components/switch/index.min",
+    BUpload: "./lib/buefy/components/upload/index.min",
+    GirdLayout: "./lib/vue-grid-layout/vue-grid-layout.umd.min",
+    Draggable: "./lib/vuedraggable/vuedraggable.umd.min",
     "sf-button": "./component/button/index",
     "sf-input": "./component/input/index",
     "sf-icon": "./component/icon/index",
@@ -18,7 +25,9 @@ requirejs.config({
     "sf-label-value": "./component/labelValue/index",
     "sf-switch": "./component/switch/index",
     "sf-upload": "./component/upload/index",
-    "sf-theme": "./component/theme/index"
+    "sf-theme": "./component/theme/index",
+    "sf-grid-layout": "./component/gridLayout/index",
+    "sf-dnd": "./component/dnd/index"
   },
   shim: {
     BButton: {
@@ -31,17 +40,21 @@ requirejs.config({
 (function() {
   function SF() {
     this.init = function(ops) {
-      require(["vue"], function(Vue) {
+      require(["vue", "axios", "i18n"], function(Vue, axios, i18n) {
+        debugger;
+        // ajax请求
+        Vue.prototype.$sf = {
+          http: axios
+        };
         var components = ops.components;
         // 初始组件
         require(components, function() {
           var componentList = arguments;
-          var plugin = ops.plugin;
+          var plugins = ops.plugins;
           // 初始插件
-          require(plugin, function() {
-            Vue.prototype.$sf = {};
+          require(plugins, function() {
             for (var i = 0; i < arguments.length; i++) {
-              Vue.prototype.$sf[plugin[i]] = arguments[i];
+              Vue.prototype.$sf[plugins[i]] = arguments[i];
             }
             var _components = {};
             for (var i = 0; i < componentList.length; i++) {
@@ -51,6 +64,7 @@ requirejs.config({
             // 创建根实例
             new Vue({
               el: "#app",
+              i18n,
               components: _components,
               created: ops.created,
               data: ops.data,
