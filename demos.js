@@ -8,7 +8,11 @@ sf.init({
         primary: "主色",
         pleaseInput: "请输入",
         clickUpload: "点击上传",
-        pleaseSelect: "请选择"
+        pleaseSelect: "请选择",
+        clickOpen: "点我打开",
+        title: "标题",
+        message: "我来啦",
+        confirmClose: "确认关闭？"
       }
     },
     en: {
@@ -19,7 +23,11 @@ sf.init({
         primary: "primary",
         pleaseInput: "please input",
         clickUpload: "click upload",
-        pleaseSelect: "please select"
+        pleaseSelect: "please select",
+        clickOpen: "click open",
+        title: "title",
+        message: "I'm coming",
+        confirmClose: "Confirm Close?"
       }
     }
   },
@@ -40,13 +48,24 @@ sf.init({
     "sf-select",
     "sf-option",
     "sf-option-group",
-    "sf-cascader"
+    "sf-cascader",
+    "sf-drawer",
+    "sf-table"
   ],
-  created: function() {},
+  plugins: ["jquery"],
+  created: function() {
+    this.$message({
+      message: this.$t("message.message")
+    });
+  },
   methods: {
-    handleChange: function(value) {
-      debugger;
-      this.$i18n.locale;
+    handleChange: function(value) {},
+    handleClose: function(done) {
+      this.$confirm(this.$t("message.confirmClose"))
+        .then(function() {
+          done();
+        })
+        .catch(function() {});
     }
   },
   data: {
@@ -392,6 +411,24 @@ sf.init({
           }
         ]
       }
+    ],
+    drawer: false,
+    direction: "rtl",
+    gridOptions: {
+      rowSelection: "multiple",
+      rowStyle: {
+        // background: 'black'
+      }
+    },
+    columnDefs: [
+      { headerName: "Make", field: "make" },
+      { headerName: "Model", field: "model" },
+      { headerName: "Price", field: "price" }
+    ],
+    rowData: [
+      { make: "Toyota", model: "Celica", price: 35000 },
+      { make: "Ford", model: "Mondeo", price: 32000 },
+      { make: "Porsche", model: "Boxter", price: 72000 }
     ]
   }
 });

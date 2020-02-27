@@ -2,6 +2,7 @@ define(["css!./component/titleContent/index.css"], function() {
   "use strict";
   return {
     name: "sf-title-content",
+    inheritAttrs: false,
     props: {
       title: {
         type: String,
@@ -9,7 +10,7 @@ define(["css!./component/titleContent/index.css"], function() {
       }
     },
     template:
-      '<ul class="sf-title-content" v-bind="this.$attr">\
+      '<ul class="sf-title-content" v-bind="$attrs">\
     <li>\
     <span>{{ title }}</span>\
     </li>\

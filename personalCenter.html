@@ -28,6 +28,14 @@
   </head>
   <body>
     <div id="app">
+      <sf-select v-model="$i18n.locale">
+        <sf-option
+          v-for="lang in langs"
+          :key="lang.value"
+          :label="lang.label"
+          :value="lang.value"
+        ></sf-option>
+      </sf-select>
       <div style="width: 70%; margin: 60px auto 0;">
         <sf-title-content :title='$t("message.personalInfo")'>
           <sf-button type="primary" style="margin-bottom: 18px;" @click="edit"

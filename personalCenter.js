@@ -7,7 +7,9 @@ sf.init({
     "sf-switch",
     "sf-upload",
     "sf-input",
-    "sf-theme"
+    "sf-theme",
+    "sf-select",
+    "sf-option"
   ],
   plugins: ["push"],
   data: {
@@ -21,18 +23,23 @@ sf.init({
       avatar: []
     },
     theme: "blue",
-    notification: false
+    notification: false,
+    langs: [
+      { label: "中文", value: "cn" },
+      { label: "English", value: "en" }
+    ]
   },
   created: function() {
     // debugger;
   },
+
   methods: {
     edit: function() {
       debugger;
     },
     notificationToggle: function(value) {
       this.notification = value;
-      this.$sf.push.create("Hello World!");
+      this.sf.push.create("Hello World!", "xxxxxxxxxxxxxxxxxxx");
     }
   }
 });

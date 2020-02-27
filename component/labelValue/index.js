@@ -31,7 +31,7 @@ define(["css!./component/labelValue/index.css"], function() {
       }
     },
     template:
-      '<ul :class="classnames" v-bind="this.$attr">\
+      '<ul :class="classnames" v-bind="$attrs">\
         <li>{{ label }}</li>\
         <li>\
         <slot></slot>\

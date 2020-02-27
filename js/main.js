@@ -7,13 +7,15 @@ requirejs.config({
     vueI18n: "./lib/vue-i18n/vue-i18n.min",
     lazyload: "./lib/vue-lazyload/vue-lazyload",
     jquery: "./lib/jquery/jquery.min",
-    lodash: "./lib/lodash/lodash.min",
+    polyfill: "./lib/babel-polyfill/polyfill.min",
     moment: "./lib/moment/moment.min",
     mousetrap: "./lib/mousetrap/mousetrap.min",
     push: "./lib/push/push.min",
     sortablejs: "./lib/sortable/sortable.min",
     axios: "./lib/axios/axios.min",
     css: "./lib/require-css/css.min",
+    EZhCNLang: "./lib/element-ui/locale/zh-CN",
+    EEnLang: "./lib/element-ui/locale/en",
     EButton: "./lib/element-ui/button",
     EInput: "./lib/element-ui/input",
     ESwitch: "./lib/element-ui/switch",
@@ -31,8 +33,16 @@ requirejs.config({
     EOption: "./lib/element-ui/option",
     EOptionGroup: "./lib/element-ui/option-group",
     ECascader: "./lib/element-ui/cascader",
+    EDrawer: "./lib/element-ui/drawer",
+    ELoading: "./lib/element-ui/loading",
+    EMessage: "./lib/element-ui/message",
+    EMessageBox: "./lib/element-ui/message-box",
+    ENotification: "./lib/element-ui/notification",
     GirdLayout: "./lib/vue-grid-layout/vue-grid-layout.umd.min",
     Draggable: "./lib/vuedraggable/vuedraggable.umd.min",
+    agGrid: "./lib/ag-grid-enterprise/dist/ag-grid-enterprise.min.noStyle",
+    AGGridVue: "./lib/ag-grid-vue/ag-grid-vue.umd.min",
+    // 后续优化：为进一步减少组件体积 基于elementUI已构建完成的组件js（已重新打包但组件间还是有公共代码）编写的组件 后续全部替换为其Vue单文件实现
     "sf-button": "./component/button/index",
     "sf-input": "./component/input/index",
     "sf-icon": "./component/icon/index",
@@ -55,7 +65,9 @@ requirejs.config({
     "sf-select": "./component/select/index",
     "sf-option": "./component/option/index",
     "sf-option-group": "./component/optionGroup/index",
-    "sf-cascader": "./component/cascader/index"
+    "sf-cascader": "./component/cascader/index",
+    "sf-drawer": "./component/drawer/index",
+    "sf-table": "./component/table/index"
   },
   shim: {},
   map: {}
@@ -64,53 +76,89 @@ requirejs.config({
 (function() {
   function SF() {
     this.init = function(ops) {
-      require([
-        "vue",
-        "axios",
-        "vueI18n",
-        // "lazyload",
-        "css!./lib/normalize/normalize.min.css",
-        "css!./lib/minireset/minireset.min.css",
-        "css!./lib/element-ui/theme-chalk/index.css"
-      ], function(Vue, axios, VueI18n) {
-        // 初始化实例属性 $sf
-        Vue.prototype.$sf = {
-          http: axios
-        };
-        // 语言包依赖
-        var localeRely = ops.UId ? ["./i18n/" + ops.UId] : [];
-        require(localeRely, function(rely) {
-          // i8n 初始化
-          Vue.use(VueI18n);
-          var i18n = new VueI18n({
-            locale: "cn",
-            messages: rely || ops.i18n
-          });
-          // Vue.use(lazyload);
-          var components = ops.components;
-          // 引入组件
-          require(components, function() {
-            var componentList = arguments;
-            var plugins = ops.plugins;
-            // 引入插件
-            require(plugins, function() {
-              // 挂载插件
-              for (var i = 0; i < arguments.length; i++) {
-                Vue.prototype.$sf[plugins[i]] = arguments[i];
-              }
-              var _components = {};
-              for (var i = 0; i < componentList.length; i++) {
-                var record = componentList[i];
-                _components[record.name] = record;
-              }
-              // 创建根实例
-              new Vue({
-                el: "#app",
-                i18n,
-                components: _components,
-                created: ops.created,
-                data: ops.data,
-                methods: ops.methods
+      require(["polyfill"], function() {
+        require([
+          "vue",
+          "axios",
+          "ELoading",
+          "EMessage",
+          "EMessageBox",
+          "ENotification",
+          "vueI18n",
+          "EZhCNLang",
+          "EEnLang",
+          // "lazyload",
+          "css!./lib/normalize/normalize.min.css",
+          "css!./lib/minireset/minireset.min.css",
+          "css!./lib/element-ui/theme-chalk/index.css"
+        ], function(
+          Vue,
+          axios,
+          ELoading,
+          EMessage,
+          EMessageBox,
+          ENotification,
+          VueI18n,
+          EZhCNLang,
+          EEnLang
+        ) {
+          // 挂载实例方法
+          Vue.use(ELoading);
+          Vue.prototype.$message = EMessage;
+          Vue.prototype.$alert = EMessageBox.alert;
+          Vue.prototype.$confirm = EMessageBox.confirm;
+          Vue.prototype.$prompt = EMessageBox.prompt;
+          Vue.prototype.$notification = ENotification;
+          // 初始化实例属性
+          //
+          Vue.prototype.User = {};
+          Vue.prototype.Command = {};
+          Vue.prototype.sf = {
+            http: axios
+          };
+          // 语言包依赖 暂只处理中文英文语言环境
+          var localeRely = ops.UId ? ["./i18n/" + ops.UId] : [];
+          require(localeRely, function(rely) {
+            // i18n 初始化
+            Vue.use(VueI18n);
+            var lang = rely || ops.i18n;
+            if (lang) {
+              Object.assign(lang.cn.message, EZhCNLang.el);
+              Object.assign(lang.en.message, EEnLang.el);
+            }
+            var i18n = new VueI18n({
+              locale: "cn",
+              messages: lang
+            });
+            // Vue.use(lazyload);
+            var components = ops.components;
+            // 引入组件
+            require(components, function() {
+              var componentList = arguments;
+              var plugins = ops.plugins;
+              // 引入插件
+              require(plugins, function() {
+                // 挂载插件
+                for (var i = 0; i < arguments.length; i++) {
+                  Vue.prototype.sf[plugins[i]] = arguments[i];
+                }
+                var _components = {};
+                for (var i = 0; i < componentList.length; i++) {
+                  var record = componentList[i];
+                  _components[record.name] = record;
+                }
+                // 创建根实例
+                new Vue({
+                  el: "#app",
+                  i18n: i18n,
+                  components: _components,
+                  created: ops.created,
+                  mounted: ops.mounted,
+                  watch: ops.watch,
+                  computed: ops.computed,
+                  data: ops.data,
+                  methods: ops.methods
+                });
               });
             });
           });

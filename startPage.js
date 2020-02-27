@@ -1,44 +1,60 @@
 sf.init({
-  components: ["sf-button", "sf-grid-layout"],
-  plugins: ["lodash", "moment", "mousetrap"],
+  components: ["sf-button", "sf-grid-layout", "sf-drawer"],
   data: {
-    canOpen: false,
-    isEdit: false,
-    selectedModel: {},
-    steps: [],
-    modelMap: {},
     modelList: [],
-    layout: []
+    startPageConfig: [],
+    isEdit: false,
+    isAddModel: false,
+    selectedModel: null,
+    isAddModelChild: false,
+    selectedPageModel: {},
+    selectedModelChild: null,
+    currentModelChildList: []
   },
   created: function() {
     this.modelList = [
       {
         name: "销售管理",
-        type: 0,
+        id: "0",
         children: [
-          { name: "订单管理", icon: "", desc: "昨日接单总数", count: 3 }
+          {
+            id: "0-0",
+            name: "订单管理",
+            icon: "",
+            desc: "昨日接单总数",
+            count: 3
+          }
         ]
       },
-      { name: "拆单管理", type: 1 },
-      { name: "采购管理", type: 2 }
+      { name: "拆单管理", id: "1" },
+      { name: "采购管理", id: "2" }
     ];
-    var layout = sessionStorage.getItem("layout");
-    if (layout) {
-      this.layout = JSON.parse(layout);
+    var startPageConfig = sessionStorage.getItem("startPageConfig");
+    if (startPageConfig) {
+      this.startPageConfig = JSON.parse(startPageConfig);
+    }
+  },
+  watch: {
+    isAddModelChild: function(newValue) {
+      if (!newValue) {
+        this.selectedPageModel = {};
+      }
     }
   },
   methods: {
-    moment: function(value){
-      return this.$sf.moment(value).format("ddd, hA")
-    },
-    modelItemAdd: function(item) {
-      debugger;
+    addModelChild: function(item) {
+      this.isAddModelChild = true;
+      var record = this.modelList.find(function(row) {
+        return row.id === item.id;
+      });
+      this.selectedPageModel = item;
+      this.currentModelChildList = record.children;
     },
     modelAdd: function() {
       var end;
       var last;
-      var len = this.layout.length;
-      this.layout.forEach(function(item, index) {
+      var len = this.startPageConfig.length;
+      this.startPageConfig.forEach(function(item, index) {
         if (!end) {
           end = item;
         } else {
@@ -58,8 +74,8 @@ sf.init({
         h: 6,
         i: 0,
         name: this.selectedModel.name,
-        type: this.selectedModel.type,
-        children: this.selectedModel.children
+        id: this.selectedModel.id,
+        children: []
       };
       if (end) {
         row.i = last.i + 1;
@@ -70,15 +86,25 @@ sf.init({
           row.y = end.y + end.h;
         }
       }
-      this.layout.push(row);
+      this.startPageConfig.push(row);
     },
-    prevStep: function() {},
+    modelChildAdd: function() {
+      this.selectedPageModel.children.push(this.selectedModelChild);
+    },
     modelDel: function(index) {
-      this.layout.splice(index, 1);
+      this.startPageConfig.splice(index, 1);
     },
-    save: function() {
-      sessionStorage.setItem("layout", JSON.stringify(this.layout));
+    modelChildDel: function(index, list) {
+      list.splice(index, 1);
     },
-    layoutUpdatedEvent: function(newLayout) {}
+    saveOrEdit: function() {
+      if (this.isEdit) {
+        sessionStorage.setItem(
+          "startPageConfig",
+          JSON.stringify(this.startPageConfig)
+        );
+      }
+      this.isEdit = !this.isEdit;
+    }
   }
 });

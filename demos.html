@@ -74,7 +74,7 @@
         :placeholder='$t("message.pleaseSelect")'
       >
         <sf-option
-          v-for="item in options"
+          v-for="item in []"
           :key="item.value"
           :label="item.label"
           :value="item.value"
@@ -159,6 +159,28 @@
         :options="cascaderOptions"
         @change="handleChange"
       ></sf-cascader>
+      <sf-button @click="drawer = true" type="primary">
+        {{$t("message.clickOpen")}}
+      </sf-button>
+      <sf-drawer
+        :title='$t("message.title")'
+        :show-close="false"
+        :visible.sync="drawer"
+        :direction="direction"
+        :before-close="handleClose"
+      >
+        <span>{{$t("message.message")}}</span>
+      </sf-drawer>
+      <sf-table
+        :grid-options="gridOptions"
+        style="width: 100%; height: 300px;"
+        :column-defs="columnDefs"
+        :row-data="rowData"
+        :checkbox-selection="true"
+        enable-range-selection
+        pagination
+      >
+      </sf-table>
     </div>
     <script src="./lib/require/require.min.js"></script>
     <script src="./js/main.js"></script>
