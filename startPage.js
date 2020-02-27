@@ -1,7 +1,8 @@
 sf.init({
   components: ["sf-button", "sf-grid-layout"],
-  plugins: ["lodash"],
+  plugins: ["lodash", "moment", "mousetrap"],
   data: {
+    canOpen: false,
     isEdit: false,
     selectedModel: {},
     steps: [],
@@ -27,6 +28,9 @@ sf.init({
     }
   },
   methods: {
+    moment: function(value){
+      return this.$sf.moment(value).format("ddd, hA")
+    },
     modelItemAdd: function(item) {
       debugger;
     },

@@ -110,7 +110,7 @@
       <div class="header">
         首页
         <div>
-          <sf-button v-if="!isEdit" @click="isEdit = true">编辑</sf-button>
+          <sf-button v-if="!isEdit" icon="el-icon-edit" type="primary" @click="isEdit = true">编辑</sf-button>
           <span v-else>
             <sf-button v-if="false" @click="prevStep">上一步</sf-button>
             <sf-button :disabled="false" @click="save">保存</sf-button>
@@ -137,7 +137,7 @@
       </div>
       <div
         class="center"
-        :style="{left: isEdit ? '200px': 0, right: isEdit ? '200px': 0}"
+        :style="{left: isEdit ? '200px': 0, right: canOpen ? '200px': 0}"
       >
         <grid-layout
           :layout="layout"
@@ -163,10 +163,10 @@
           >
             <div :class='["list", {"list-static": item.static}]'>
               <div class="list-header">
-                {{item.name}}
+                {{item.name}}{{moment("2020/2/26")}}
                 <span
                   class="list-header-add"
-                  @click="modelItemAdd(item)"
+                  @click="canOpen = true"
                   v-if="isEdit"
                   >+</span
                 >
@@ -186,7 +186,7 @@
           </grid-item>
         </grid-layout>
       </div>
-      <div class="right" :style="{right: isEdit  ? 0: '-200px'}">
+      <div class="right" :style="{right: canOpen  ? 0: '-200px'}">
         <ul class="right-content">
           <li v-for="item in modelList">
             {{item.name}}

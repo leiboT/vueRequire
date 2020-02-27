@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>示例</title>
+  </head>
+  <body>
+    <div id="app">
+      <sf-row>
+        <sf-col :span="12"
+          >{{$t("message.row")}} {{$t("message.col")}} 12</sf-col
+        >
+        <sf-col :span="12"
+          >{{$t("message.row")}} {{$t("message.col")}} 12</sf-col
+        >
+        <sf-col :span="8">{{$t("message.row")}} {{$t("message.col")}} 8</sf-col>
+        <sf-col :span="8">{{$t("message.row")}} {{$t("message.col")}} 8</sf-col>
+        <sf-col :span="8">{{$t("message.row")}} {{$t("message.col")}} 8</sf-col>
+      </sf-row>
+      <sf-button type="default">{{$t("message.default")}}</sf-button>
+      <sf-button type="primary">{{$t("message.primary")}}</sf-button>
+      <sf-button icon="el-icon-edit" type="default"
+        >{{$t("message.default")}}</sf-button
+      >
+      <sf-input
+        :placeholder='$t("message.pleaseInput")'
+        v-model="input"
+        clearable
+      ></sf-input>
+      <sf-input
+        v-model="password"
+        type="password"
+        suffix-icon="el-icon-date"
+        :placeholder='$t("message.pleaseInput")'
+        clearable
+      ></sf-input>
+      <sf-input
+        :rows="4"
+        type="textarea"
+        :placeholder='$t("message.pleaseInput")'
+        clearable
+      ></sf-input>
+      <sf-switch></sf-switch>
+      <sf-upload action="//127.0.0.1/upload">
+        <sf-button icon="el-icon-plus" size="small" type="primary"
+          >{{$t("message.clickUpload")}}</sf-button
+        >
+      </sf-upload>
+      <sf-radio v-model="radio" label="1">备选项</sf-radio>
+      <sf-radio v-model="radio" label="2">备选项</sf-radio>
+      <sf-radio-group v-model="radioButton">
+        <sf-radio-button label="1">备选项</sf-radio-button>
+        <sf-radio-button label="2">备选项</sf-radio-button>
+      </sf-radio-group>
+      <sf-checkbox-group v-model="checkList">
+        <sf-checkbox label="复选框 A"></sf-checkbox>
+        <sf-checkbox label="复选框 B"></sf-checkbox>
+        <sf-checkbox label="复选框 C"></sf-checkbox>
+        <sf-checkbox label="禁用" disabled></sf-checkbox>
+        <sf-checkbox label="选中且禁用" disabled></sf-checkbox>
+      </sf-checkbox-group>
+      <sf-checkbox-group v-model="checkboxButton">
+        <sf-checkbox-button label="复选框 A"></sf-checkbox-button>
+        <sf-checkbox-button label="复选框 B"></sf-checkbox-button>
+        <sf-checkbox-button label="复选框 C"></sf-checkbox-button>
+        <sf-checkbox-button label="禁用" disabled></sf-checkbox-button>
+        <sf-checkbox-button label="选中且禁用" disabled></sf-checkbox-button>
+      </sf-checkbox-group>
+      <sf-input-number v-model="num" :min="1" :max="10"></sf-input-number>
+      <sf-select
+        v-model="select"
+        clearable
+        :placeholder='$t("message.pleaseSelect")'
+      >
+        <sf-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </sf-option>
+      </sf-select>
+      <sf-select
+        v-model="selectList"
+        multiple
+        clearable
+        :placeholder='$t("message.pleaseSelect")'
+      >
+        <sf-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </sf-option>
+      </sf-select>
+      <sf-select
+        v-model="selectGroup"
+        :placeholder='$t("message.pleaseSelect")'
+      >
+        <sf-option-group
+          v-for="group in optionsGroup"
+          :key="group.label"
+          :label="group.label"
+        >
+          <sf-option
+            v-for="item in group.options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </sf-option>
+        </sf-option-group>
+      </sf-select>
+      <sf-select
+        v-model="selectAllowCreate"
+        filterable
+        allow-create
+        default-first-option
+        :placeholder='$t("message.pleaseSelect")'
+      >
+        <sf-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </sf-option>
+      </sf-select>
+      <sf-select
+        v-model="selectAllowCreateMultiple"
+        multiple
+        filterable
+        allow-create
+        default-first-option
+        :placeholder='$t("message.pleaseSelect")'
+      >
+        <sf-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </sf-option>
+      </sf-select>
+      <sf-select v-model="$i18n.locale">
+        <sf-option
+          v-for="lang in langs"
+          :key="lang.value"
+          :label="lang.label"
+          :value="lang.value"
+        ></sf-option>
+      </sf-select>
+      <sf-cascader
+        :placeholder='$t("message.pleaseSelect")'
+        clearable
+        v-model="cascader"
+        :options="cascaderOptions"
+        @change="handleChange"
+      ></sf-cascader>
+    </div>
+    <script src="./lib/require/require.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./demos.js"></script>
+  </body>
+</html>

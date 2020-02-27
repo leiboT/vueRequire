@@ -1,4 +1,5 @@
 sf.init({
+  UId: "personalCenter",
   components: [
     "sf-title-content",
     "sf-button",

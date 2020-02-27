@@ -1,15 +1,10 @@
-define([
-  "BInput",
-  "css!./component/input/index.css",
-  "css!./lib/buefy/css/buefy.min.css",
-  "css!./lib/buefy/css/materialdesignicons.min.css"
-], function(BInput) {
+define(["EInput"], function(EInput) {
   "use strict";
   return {
     name: "sf-input",
     functional: true,
     render: function(createElement, context) {
-      return createElement(BInput.BInput, context.data, context.children);
+      return createElement(EInput, context.data, context.children);
     }
   };
 });
