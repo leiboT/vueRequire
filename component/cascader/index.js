@@ -1,10 +1,10 @@
-define(["ECascader"], function(ECascader) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-cascader",
+    name: "cascader",
     functional: true,
     render: function(createElement, context) {
-      return createElement(ECascader, context.data, context.children);
+      return createElement(ELIndex.Cascader, context.data, context.children);
     }
   };
 });

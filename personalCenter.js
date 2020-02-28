@@ -11,7 +11,7 @@ sf.init({
     "sf-select",
     "sf-option"
   ],
-  plugins: ["push"],
+  plugins: ["push", "moment"],
   data: {
     api: {},
     info: {
@@ -29,17 +29,25 @@ sf.init({
       { label: "English", value: "en" }
     ]
   },
-  created: function() {
-    // debugger;
+  created: function () {
+    debugger
+    sf.Command.Request({
+      url: "/api/info"
+    })
+      .then(function (data) {
+        debugger;
+      })
+      .catch(function (err) {
+        debugger;
+      });
   },
-
   methods: {
-    edit: function() {
-      debugger;
+    edit: function () {
+      sf.Command.Beginload();
     },
-    notificationToggle: function(value) {
+    notificationToggle: function (value) {
       this.notification = value;
-      this.sf.push.create("Hello World!", "xxxxxxxxxxxxxxxxxxx");
+      this.$sf.push.create("Hello World!");
     }
   }
 });

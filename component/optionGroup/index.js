@@ -1,10 +1,10 @@
-define(["EOptionGroup"], function(EOptionGroup) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-option-group",
+    name: "option-group",
     functional: true,
     render: function(createElement, context) {
-      return createElement(EOptionGroup, context.data, context.children);
+      return createElement(ELIndex.OptionGroup, context.data, context.children);
     }
   };
 });

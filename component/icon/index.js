@@ -1,15 +1,10 @@
-define([
-  "BIcon",
-  "css!./component/icon/index.css",
-  "css!./lib/buefy/css/buefy.min.css",
-  "css!./lib/buefy/css/materialdesignicons.min.css"
-], function(BIcon) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-icon",
+    name: "icon",
     functional: true,
     render: function(createElement, context) {
-      return createElement(BIcon.BIcon, context.data, context.children);
+      return createElement(ELIndex.Icon, context.data, context.children);
     }
   };
 });

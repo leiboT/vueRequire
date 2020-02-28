@@ -1,10 +1,10 @@
-define(["ERadioGroup"], function(ERadioGroup) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-radio-group",
+    name: "radio-group",
     functional: true,
     render: function(createElement, context) {
-      return createElement(ERadioGroup, context.data, context.children);
+      return createElement(ELIndex.RadioGroup, context.data, context.children);
     }
   };
 });

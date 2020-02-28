@@ -1,10 +1,10 @@
-define(["EUpload"], function(EUpload) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-upload",
+    name: "upload",
     functional: true,
     render: function(createElement, context) {
-      return createElement(EUpload, context.data, context.children);
+      return createElement(ELIndex.Upload, context.data, context.children);
     }
   };
 });

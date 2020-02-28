@@ -1,10 +1,10 @@
-define(["ESwitch"], function(ESwitch) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-switch",
+    name: "switch",
     functional: true,
     render: function(createElement, context) {
-      return createElement(ESwitch, context.data, context.children);
+      return createElement(ELIndex.Switch, context.data, context.children);
     }
   };
 });

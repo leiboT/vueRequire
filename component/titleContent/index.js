@@ -1,7 +1,7 @@
 define(["css!./component/titleContent/index.css"], function() {
   "use strict";
   return {
-    name: "sf-title-content",
+    name: "title-content",
     inheritAttrs: false,
     props: {
       title: {

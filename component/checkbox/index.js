@@ -1,10 +1,10 @@
-define(["ECheckbox"], function(ECheckbox) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-checkbox",
+    name: "checkbox",
     functional: true,
     render: function(createElement, context) {
-      return createElement(ECheckbox, context.data, context.children);
+      return createElement(ELIndex.Checkbox, context.data, context.children);
     }
   };
 });

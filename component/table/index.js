@@ -5,7 +5,7 @@ define([
 ], function(AGGridVue) {
   "use strict";
   return {
-    name: "sf-table",
+    name: "table",
     functional: true,
     render: function(createElement, context) {
       context.data.class = "ag-theme-material";

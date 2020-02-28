@@ -1,10 +1,10 @@
-define(["ECol"], function(ECol) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-col",
+    name: "col",
     functional: true,
     render: function(createElement, context) {
-      return createElement(ECol, context.data, context.children);
+      return createElement(ELIndex.Col, context.data, context.children);
     }
   };
 });

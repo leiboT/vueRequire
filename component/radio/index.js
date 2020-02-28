@@ -1,10 +1,10 @@
-define(["ERadio"], function(ERadio) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-radio",
+    name: "radio",
     functional: true,
     render: function(createElement, context) {
-      return createElement(ERadio, context.data, context.children);
+      return createElement(ELIndex.Radio, context.data, context.children);
     }
   };
 });

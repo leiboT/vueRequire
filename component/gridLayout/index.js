@@ -5,7 +5,7 @@ define(["GirdLayout", "vue", "css!./component/gridLayout/index.css"], function(
   "use strict";
   Vue.component("sfGridLayoutItem", GirdLayout.GridItem);
   return {
-    name: "sf-grid-layout",
+    name: "grid-layout",
     functional: true,
     render: function(createElement, context) {
       return createElement(

@@ -1,10 +1,10 @@
-define(["EInputNumber"], function(EInputNumber) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-input-number",
+    name: "input-number",
     functional: true,
     render: function(createElement, context) {
-      return createElement(EInputNumber, context.data, context.children);
+      return createElement(ELIndex.InputNumber, context.data, context.children);
     }
   };
 });

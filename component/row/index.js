@@ -1,10 +1,10 @@
-define(["ERow"], function(ERow) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-row",
+    name: "row",
     functional: true,
     render: function(createElement, context) {
-      return createElement(ERow, context.data, context.children);
+      return createElement(ELIndex.Row, context.data, context.children);
     }
   };
 });

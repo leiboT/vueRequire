@@ -1,10 +1,10 @@
-define(["ESelect"], function(ESelect) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-select",
+    name: "select",
     functional: true,
     render: function(createElement, context) {
-      return createElement(ESelect, context.data, context.children);
+      return createElement(ELIndex.Select, context.data, context.children);
     }
   };
 });

@@ -1,10 +1,10 @@
-define(["EDrawer"], function(EDrawer) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-drawer",
+    name: "drawer",
     functional: true,
     render: function(createElement, context) {
-      return createElement(EDrawer, context.data, context.children);
+      return createElement(ELIndex.Drawer, context.data, context.children);
     }
   };
 });

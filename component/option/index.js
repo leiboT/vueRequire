@@ -1,10 +1,10 @@
-define(["EOption"], function(EOption) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-option",
+    name: "option",
     functional: true,
     render: function(createElement, context) {
-      return createElement(EOption, context.data, context.children);
+      return createElement(ELIndex.Option, context.data, context.children);
     }
   };
 });

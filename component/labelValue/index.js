@@ -1,7 +1,7 @@
 define(["css!./component/labelValue/index.css"], function() {
   "use strict";
   return {
-    name: "sf-label-value",
+    name: "label-value",
     inheritAttrs: false,
     props: {
       label: {

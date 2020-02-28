@@ -1,10 +1,10 @@
-define(["ECheckboxGroup"], function(ECheckboxGroup) {
+define(["ELIndex"], function(ELIndex) {
   "use strict";
   return {
-    name: "sf-checkbox-group",
+    name: "checkbox-group",
     functional: true,
     render: function(createElement, context) {
-      return createElement(ECheckboxGroup, context.data, context.children);
+      return createElement(ELIndex.CheckboxGroup, context.data, context.children);
     }
   };
 });

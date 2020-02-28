@@ -1,7 +1,7 @@
 define(["css!./component/theme/index.css"], function() {
   "use strict";
   return {
-    name: "sf-theme",
+    name: "theme",
     data: function() {
       return {
         themeList: ["blue", "red", "pink", "green", "purple"]
