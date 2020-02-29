@@ -19,7 +19,7 @@ requirejs.config({
     ELIndex: "../lib/element-ui/index",
     GirdLayout: "../lib/vue-grid-layout/vue-grid-layout.umd.min",
     Draggable: "../lib/vuedraggable/vuedraggable.umd.min",
-    agGrid: "../lib/ag-grid-enterprise/dist/ag-grid-enterprise.min.noStyle",
+    agGrid: "../lib/ag-grid-enterprise/ag-grid-enterprise.min.noStyle",
     AGGridVue: "../lib/ag-grid-vue/ag-grid-vue.umd.min",
     AGGridVueLocale: "../lib/ag-grid-vue/locale",
     // 后续优化：为进一步减少组件体积 基于elementUI已构建完成的组件js（已重新打包但组件间还是有公共代码）编写的组件 后续全部替换为其Vue单文件实现
