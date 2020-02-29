@@ -1,4 +1,4 @@
-define(["css!./component/labelValue/index.css"], function() {
+define(["css!../component/labelValue/index.css"], function() {
   "use strict";
   return {
     name: "label-value",

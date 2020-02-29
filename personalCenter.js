@@ -29,25 +29,25 @@ sf.init({
       { label: "English", value: "en" }
     ]
   },
-  created: function () {
-    debugger
+  init: function() {
+    debugger;
     sf.Command.Request({
       url: "/api/info"
     })
-      .then(function (data) {
+      .then(function(data) {
         debugger;
       })
-      .catch(function (err) {
+      .catch(function(err) {
         debugger;
       });
   },
   methods: {
-    edit: function () {
+    edit: function() {
       sf.Command.Beginload();
     },
-    notificationToggle: function (value) {
+    notificationToggle: function(value) {
       this.notification = value;
-      this.$sf.push.create("Hello World!");
+      sf.Plugin.push.create("Hello World!");
     }
   }
 });

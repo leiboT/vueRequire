@@ -1,4 +1,4 @@
-define(["css!./component/theme/index.css"], function() {
+define(["css!../component/theme/index.css"], function() {
   "use strict";
   return {
     name: "theme",

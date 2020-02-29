@@ -1,4 +1,4 @@
-define(["GirdLayout", "vue", "css!./component/gridLayout/index.css"], function(
+define(["GirdLayout", "vue", "css!../component/gridLayout/index.css"], function(
   GirdLayout,
   Vue
 ) {

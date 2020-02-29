@@ -1,4 +1,4 @@
-define(["css!./component/titleContent/index.css"], function() {
+define(["css!../component/titleContent/index.css"], function() {
   "use strict";
   return {
     name: "title-content",

@@ -19,13 +19,14 @@ sf.init({
     "sf-option-group",
     "sf-cascader",
     "sf-drawer",
-    "sf-table"
+    "sf-table",
+    "sf-split"
   ],
   plugins: ["jquery"],
-  created: function() {
-    // this.$message({
-    //   message: this.$t("message.message")
-    // });
+  init: function() {
+    var _sf = sf,
+      instance = this;
+    debugger;
   },
   methods: {
     handleChange: function(value) {},

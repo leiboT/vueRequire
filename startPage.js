@@ -11,7 +11,7 @@ sf.init({
     selectedModelChild: null,
     currentModelChildList: []
   },
-  created: function() {
+  init: function() {
     this.modelList = [
       {
         name: "销售管理",

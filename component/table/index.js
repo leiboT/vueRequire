@@ -1,7 +1,7 @@
 define([
   "AGGridVue",
-  "css!./lib/ag-grid-enterprise/dist/styles/ag-grid.css",
-  "css!./lib/ag-grid-enterprise/dist/styles/ag-theme-material.css"
+  "css!../lib/ag-grid-enterprise/dist/styles/ag-grid.css",
+  "css!../lib/ag-grid-enterprise/dist/styles/ag-theme-material.css"
 ], function(AGGridVue) {
   "use strict";
   return {
