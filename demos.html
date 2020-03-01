@@ -1,107 +1,287 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>示例</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>示例</title>
-</head>
-
-<body>
-  <div id="app">
-    <sf-row>
-      <sf-col :span="12">{{$t("message.row")}} {{$t("message.col")}} 12</sf-col>
-      <sf-col :span="12">{{$t("message.row")}} {{$t("message.col")}} 12</sf-col>
-      <sf-col :span="8">{{$t("message.row")}} {{$t("message.col")}} 8</sf-col>
-      <sf-col :span="8">{{$t("message.row")}} {{$t("message.col")}} 8</sf-col>
-      <sf-col :span="8">{{$t("message.row")}} {{$t("message.col")}} 8</sf-col>
-    </sf-row>
-    <sf-button type="default">{{$t("message.default")}}</sf-button>
-    <sf-button type="primary">{{$t("message.primary")}}</sf-button>
-    <sf-button icon="el-icon-edit" type="default">{{$t("message.default")}}</sf-button>
-    <sf-input :placeholder='$t("message.pleaseInput")' v-model="input" clearable></sf-input>
-    <sf-input v-model="password" type="password" suffix-icon="el-icon-date" :placeholder='$t("message.pleaseInput")'
-      clearable></sf-input>
-    <sf-input :rows="4" type="textarea" :placeholder='$t("message.pleaseInput")' clearable></sf-input>
-    <sf-switch></sf-switch>
-    <sf-upload action="//127.0.0.1/upload">
-      <sf-button icon="el-icon-plus" size="small" type="primary">{{$t("message.clickUpload")}}</sf-button>
-    </sf-upload>
-    <sf-radio v-model="radio" label="1">备选项</sf-radio>
-    <sf-radio v-model="radio" label="2">备选项</sf-radio>
-    <sf-radio-group v-model="radioButton">
-      <sf-radio-button label="1">备选项</sf-radio-button>
-      <sf-radio-button label="2">备选项</sf-radio-button>
-    </sf-radio-group>
-    <sf-checkbox-group v-model="checkList">
-      <sf-checkbox label="复选框 A"></sf-checkbox>
-      <sf-checkbox label="复选框 B"></sf-checkbox>
-      <sf-checkbox label="复选框 C"></sf-checkbox>
-      <sf-checkbox label="禁用" disabled></sf-checkbox>
-      <sf-checkbox label="选中且禁用" disabled></sf-checkbox>
-    </sf-checkbox-group>
-    <sf-checkbox-group v-model="checkboxButton">
-      <sf-checkbox-button label="复选框 A"></sf-checkbox-button>
-      <sf-checkbox-button label="复选框 B"></sf-checkbox-button>
-      <sf-checkbox-button label="复选框 C"></sf-checkbox-button>
-      <sf-checkbox-button label="禁用" disabled></sf-checkbox-button>
-      <sf-checkbox-button label="选中且禁用" disabled></sf-checkbox-button>
-    </sf-checkbox-group>
-    <sf-input-number v-model="num" :min="1" :max="10"></sf-input-number>
-    <sf-select v-model="select" clearable :placeholder='$t("message.pleaseSelect")'>
-      <sf-option v-for="item in []" :key="item.value" :label="item.label" :value="item.value">
-      </sf-option>
-    </sf-select>
-    <sf-select v-model="selectList" multiple clearable :placeholder='$t("message.pleaseSelect")'>
-      <sf-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-      </sf-option>
-    </sf-select>
-    <sf-select v-model="selectGroup" :placeholder='$t("message.pleaseSelect")'>
-      <sf-option-group v-for="group in optionsGroup" :key="group.label" :label="group.label">
-        <sf-option v-for="item in group.options" :key="item.value" :label="item.label" :value="item.value">
+  <body>
+    <div id="app">
+      <sf-row>
+        <sf-col :span="12"
+          >{{$t("message.row")}} {{$t("message.col")}} 12</sf-col
+        >
+        <sf-col :span="12"
+          >{{$t("message.row")}} {{$t("message.col")}} 12</sf-col
+        >
+        <sf-col :span="8">{{$t("message.row")}} {{$t("message.col")}} 8</sf-col>
+        <sf-col :span="8">{{$t("message.row")}} {{$t("message.col")}} 8</sf-col>
+        <sf-col :span="8">{{$t("message.row")}} {{$t("message.col")}} 8</sf-col>
+      </sf-row>
+      <sf-button type="default">{{$t("message.default")}}</sf-button>
+      <sf-button type="primary">{{$t("message.primary")}}</sf-button>
+      <sf-button icon="el-icon-edit" type="default"
+        >{{$t("message.default")}}</sf-button
+      >
+      <sf-input
+        :placeholder='$t("message.pleaseInput")'
+        v-model="input"
+        clearable
+      ></sf-input>
+      <sf-input
+        v-model="password"
+        type="password"
+        suffix-icon="el-icon-date"
+        :placeholder='$t("message.pleaseInput")'
+        clearable
+      ></sf-input>
+      <sf-input
+        :rows="4"
+        type="textarea"
+        :placeholder='$t("message.pleaseInput")'
+        clearable
+      >
+        <template slot="append">.com</template>
+      </sf-input>
+      <sf-switch></sf-switch>
+      <sf-upload action="//127.0.0.1/upload">
+        <sf-button icon="el-icon-plus" size="small" type="primary"
+          >{{$t("message.clickUpload")}}</sf-button
+        >
+      </sf-upload>
+      <sf-radio v-model="radio" label="1">备选项</sf-radio>
+      <sf-radio v-model="radio" label="2">备选项</sf-radio>
+      <sf-radio-group v-model="radioButton">
+        <sf-radio-button label="1">备选项</sf-radio-button>
+        <sf-radio-button label="2">备选项</sf-radio-button>
+      </sf-radio-group>
+      <sf-checkbox-group v-model="checkList">
+        <sf-checkbox label="复选框 A"></sf-checkbox>
+        <sf-checkbox label="复选框 B"></sf-checkbox>
+        <sf-checkbox label="复选框 C"></sf-checkbox>
+        <sf-checkbox label="禁用" disabled></sf-checkbox>
+        <sf-checkbox label="选中且禁用" disabled></sf-checkbox>
+      </sf-checkbox-group>
+      <sf-checkbox-group v-model="checkboxButton">
+        <sf-checkbox-button label="复选框 A"></sf-checkbox-button>
+        <sf-checkbox-button label="复选框 B"></sf-checkbox-button>
+        <sf-checkbox-button label="复选框 C"></sf-checkbox-button>
+        <sf-checkbox-button label="禁用" disabled></sf-checkbox-button>
+        <sf-checkbox-button label="选中且禁用" disabled></sf-checkbox-button>
+      </sf-checkbox-group>
+      <sf-input-number v-model="num" :min="1" :max="10"></sf-input-number>
+      <sf-select
+        v-model="select"
+        clearable
+        :placeholder='$t("message.pleaseSelect")'
+      >
+        <sf-option
+          v-for="item in []"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
         </sf-option>
-      </sf-option-group>
-    </sf-select>
-    <sf-select v-model="selectAllowCreate" filterable allow-create default-first-option
-      :placeholder='$t("message.pleaseSelect")'>
-      <sf-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-      </sf-option>
-    </sf-select>
-    <sf-select v-model="selectAllowCreateMultiple" multiple filterable allow-create default-first-option
-      :placeholder='$t("message.pleaseSelect")'>
-      <sf-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
-      </sf-option>
-    </sf-select>
-    <sf-select v-model="$i18n.locale">
-      <sf-option v-for="lang in langs" :key="lang.value" :label="lang.label" :value="lang.value"></sf-option>
-    </sf-select>
-    <sf-cascader :placeholder='$t("message.pleaseSelect")' clearable v-model="cascader" :options="cascaderOptions"
-      @change="handleChange"></sf-cascader>
-    <sf-button @click="drawer = true" type="primary">
-      {{$t("message.clickOpen")}}
-    </sf-button>
-    <sf-drawer :title='$t("message.title")' :show-close="false" :visible.sync="drawer" :direction="direction"
-      :before-close="handleClose">
-      <span>{{$t("message.message")}}</span>
-    </sf-drawer>
-    <sf-table :grid-options="gridOptions" style="width: 100%; height: 300px;" :column-defs="columnDefs"
-      :row-data="rowData" :checkbox-selection="true" enable-range-selection pagination :locale-text='$t("ag")'>
-    </sf-table>
-    <sf-split class="default-theme" horizontal style="height: 400px">
-      <sf-split-pane min-size="20" max-size="70">
-        <span>1</span>
-      </sf-split-pane>
-      <sf-split-pane>
-        <span>2</span>
-      </sf-split-pane>
-      <sf-split-pane max-size="70">
-        <span>3</span>
-      </sf-split-pane>
-    </sf-split>
-  </div>
-  <script src="./lib/bundle/index.js"></script>
-  <script src="./js/main.js"></script>
-  <script src="./demos.js"></script>
-</body>
-
+      </sf-select>
+      <sf-select
+        v-model="selectList"
+        multiple
+        clearable
+        :placeholder='$t("message.pleaseSelect")'
+      >
+        <sf-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </sf-option>
+      </sf-select>
+      <sf-select
+        v-model="selectGroup"
+        :placeholder='$t("message.pleaseSelect")'
+      >
+        <sf-option-group
+          v-for="group in optionsGroup"
+          :key="group.label"
+          :label="group.label"
+        >
+          <sf-option
+            v-for="item in group.options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </sf-option>
+        </sf-option-group>
+      </sf-select>
+      <sf-select
+        v-model="selectAllowCreate"
+        filterable
+        allow-create
+        default-first-option
+        :placeholder='$t("message.pleaseSelect")'
+      >
+        <sf-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </sf-option>
+      </sf-select>
+      <sf-select
+        v-model="selectAllowCreateMultiple"
+        multiple
+        filterable
+        allow-create
+        default-first-option
+        :placeholder='$t("message.pleaseSelect")'
+      >
+        <sf-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </sf-option>
+      </sf-select>
+      <sf-select v-model="$i18n.locale">
+        <sf-option
+          v-for="lang in langs"
+          :key="lang.value"
+          :label="lang.label"
+          :value="lang.value"
+        ></sf-option>
+      </sf-select>
+      <sf-cascader
+        :placeholder='$t("message.pleaseSelect")'
+        clearable
+        v-model="cascader"
+        :options="cascaderOptions"
+        @change="handleChange"
+      ></sf-cascader>
+      <sf-button @click="drawer = true" type="primary">
+        {{$t("message.clickOpen")}}
+      </sf-button>
+      <sf-drawer
+        :title='$t("message.title")'
+        :show-close="false"
+        :visible.sync="drawer"
+        :direction="direction"
+        :before-close="handleClose"
+      >
+        <span>{{$t("message.message")}}</span>
+      </sf-drawer>
+      <sf-table
+        :grid-options="gridOptions"
+        style="width: 100%; height: 300px;"
+        :column-defs="columnDefs"
+        :row-data="rowData"
+        row-selection="multiple"
+        enable-range-selection
+        pagination
+        :locale-text='$t("ag")'
+        @row-selected="onRowSelected"
+      >
+      </sf-table>
+      <sf-split class="default-theme" horizontal style="height: 400px">
+        <sf-split-pane min-size="20" max-size="70">
+          <span>1</span>
+        </sf-split-pane>
+        <sf-split-pane>
+          <sf-split>
+            <sf-split-pane>2-1</sf-split-pane>
+            <sf-split-pane>2-2-</sf-split-pane>
+            <sf-split-pane>2-3</sf-split-pane>
+          </sf-split>
+        </sf-split-pane>
+        <sf-split-pane :max-size="70">
+          <span>3</span>
+        </sf-split-pane>
+      </sf-split>
+      <sf-form
+        :model="ruleForm"
+        :rules="rules"
+        ref="ruleForm"
+        label-width="100px"
+        class="demo-ruleForm"
+      >
+        <sf-form-item label="活动名称" prop="name">
+          <sf-input v-model="ruleForm.name"></sf-input>
+        </sf-form-item>
+        <sf-form-item label="活动区域" prop="region">
+          <sf-select v-model="ruleForm.region" placeholder="请选择活动区域">
+            <sf-option label="区域一" value="shanghai"></sf-option>
+            <sf-option label="区域二" value="beijing"></sf-option>
+          </sf-select>
+        </sf-form-item>
+        <sf-form-item label="日期" prop="date1">
+          <sf-date-picker
+            v-model="ruleForm.date1"
+            type="daterange"
+            align="right"
+            unlink-panels
+            range-separator="至"
+            start-placeholder="开始日期"
+            end-placeholder="结束日期"
+            :picker-options="pickerOptions2"
+          >
+          </sf-date-picker>
+        </sf-form-item>
+        <sf-form-item label="即时配送" prop="delivery">
+          <sf-switch v-model="ruleForm.delivery"></sf-switch>
+        </sf-form-item>
+        <sf-form-item label="活动性质" prop="type">
+          <sf-checkbox-group v-model="ruleForm.type">
+            <sf-checkbox label="美食/餐厅线上活动" name="type"></sf-checkbox>
+            <sf-checkbox label="地推活动" name="type"></sf-checkbox>
+            <sf-checkbox label="线下主题活动" name="type"></sf-checkbox>
+            <sf-checkbox label="单纯品牌曝光" name="type"></sf-checkbox>
+          </sf-checkbox-group>
+        </sf-form-item>
+        <sf-form-item label="特殊资源" prop="resource">
+          <sf-radio-group v-model="ruleForm.resource">
+            <sf-radio label="线上品牌商赞助"></sf-radio>
+            <sf-radio label="线下场地免费"></sf-radio>
+          </sf-radio-group>
+        </sf-form-item>
+        <sf-form-item label="活动形式" prop="desc">
+          <sf-input type="textarea" v-model="ruleForm.desc"></sf-input>
+        </sf-form-item>
+        <sf-form-item>
+          <sf-button type="primary" @click="submitForm('ruleForm')"
+            >立即创建</sf-button
+          >
+          <sf-button @click="resetForm('ruleForm')">重置</sf-button>
+        </sf-form-item>
+      </sf-form>
+      <sf-toolbar
+        :buttons="buttons"
+        @search="search"
+        :keyword="condition.keyword"
+      ></sf-toolbar>
+      <sf-button @click="dialogVisible = true"
+        >点击打开 Dialog</sf-button
+      >
+      <sf-dialog
+        title="提示"
+        :visible.sync="dialogVisible"
+        width="30%"
+        :before-close="handleClose"
+      >
+        <span>这是一段信息</span>
+        <span slot="footer" class="dialog-footer">
+          <sf-button @click="dialogVisible = false">取 消</sf-button>
+          <sf-button type="primary" @click="dialogVisible = false"
+            >确 定</sf-button
+          >
+        </span>
+      </sf-dialog>
+    </div>
+    <script src="./lib/bundle/index.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./demos.js"></script>
+  </body>
 </html>

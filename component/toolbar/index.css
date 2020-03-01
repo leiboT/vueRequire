@@ -1,0 +1,19 @@
+.sf-toolbar {
+  height: 60px;
+  background-color: #fff;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid #ddd;
+}
+
+.sf-toolbar > li:first-child {
+  -webkit-box-flex: 1;
+  flex: 1;
+}
+.sf-toolbar > li:last-child {
+  -webkit-box-flex: 0;
+  flex: 0 0 250px;
+}
